@@ -1,0 +1,10 @@
+/* ============================================================
+   report.css — Styles for report.html (Report a Scam page)
+   ============================================================ */
+
+/* Dot-grid background */
+body {
+    background-color: #0a0d13;
+    background-image: radial-gradient(circle at 2px 2px, rgba(0, 212, 255, 0.05) 1px, transparent 0);
+    background-size: 24px 24px;
+}

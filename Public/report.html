@@ -1,194 +1,238 @@
 <!DOCTYPE html>
-
-<html class="dark" lang="en"><head>
+<html class="dark" lang="en">
+<head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Report a Scam | PhishRadar</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Space+Mono:wght@400;700&amp;family=Syne:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
 <script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#00d4ff",
-                        "background-light": "#f5f8f8",
-                        "background-dark": "#0a0d13",
-                        "surface": "#0f1420",
-                        "border-muted": "#1e2738"
-                    },
-                    fontFamily: {
-                        "display": ["Syne", "sans-serif"],
-                        "mono": ["Space Mono", "monospace"],
-                        "body": ["Space Grotesk", "sans-serif"]
-                    },
-                    borderRadius: {
-                        "DEFAULT": "0.5rem",
-                        "lg": "1rem",
-                        "xl": "1.5rem",
-                        "full": "9999px",
-                        "form": "14px"
-                    },
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+                colors: {
+                    "primary":         "#00d4ff",
+                    "danger":          "#ff3e5e",
+                    "warning":         "#ffaa00",
+                    "success":         "#00e5a0",
+                    "background-dark": "#0a0d13",
+                    "card-dark":       "#0f1420",
+                    "border-dark":     "#1e2738",
                 },
+                fontFamily: {
+                    "display": ["Syne", "sans-serif"],
+                    "sans":    ["Space Grotesk", "sans-serif"],
+                    "mono":    ["Space Mono", "monospace"],
+                },
+                borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
             },
-        }
-    </script>
-<style>
-        body {
-            background-image: radial-gradient(circle at 2px 2px, rgba(0, 212, 255, 0.05) 1px, transparent 0);
-            background-size: 24px 24px;
-        }
-    </style>
+        },
+    }
+</script>
+<link href="css/report.css" rel="stylesheet"/>
 </head>
-<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-body min-h-screen flex flex-col">
-<!-- Sticky Navbar -->
-<nav class="sticky top-0 z-50 w-full border-b border-border-muted bg-background-dark/80 backdrop-blur-md">
-<div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-<div class="flex items-center gap-3 group cursor-pointer">
-<div class="size-10 flex items-center justify-center rounded-lg bg-primary/10 text-primary">
-<span class="material-symbols-outlined text-3xl">shield</span>
-</div>
-<h1 class="font-display text-2xl font-bold tracking-tight text-white">PhishRadar</h1>
-</div>
-<div class="hidden md:flex items-center gap-10">
-<div class="flex items-center gap-8">
-<a class="text-sm font-medium text-slate-400 hover:text-primary transition-colors" href="#">Scan Link</a>
-<a class="text-sm font-medium text-primary transition-colors" href="#">Report Scam</a>
-<a class="text-sm font-medium text-slate-400 hover:text-primary transition-colors" href="#">Dashboard</a>
-</div>
-<button class="bg-primary text-background-dark px-6 py-2.5 rounded-full font-display font-bold text-sm hover:scale-105 transition-transform">
-                    Scan Now
-                </button>
-<div class="w-10 h-10 rounded-full bg-slate-800 border border-border-muted overflow-hidden" data-alt="User avatar placeholder with abstract pattern">
-<div class="w-full h-full bg-gradient-to-br from-primary/40 to-surface"></div>
-</div>
-</div>
-</div>
+<body class="text-slate-100 font-sans min-h-screen flex flex-col">
+
+<!-- ═══════════════════════════ NAVIGATION ═══════════════════════════ -->
+<nav class="sticky top-0 z-50 w-full border-b border-border-dark bg-background-dark/80 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+        <!-- Logo -->
+        <a href="index.html" class="flex items-center gap-3 group">
+            <div class="size-10 flex items-center justify-center rounded-lg bg-primary/10 text-primary">
+                <span class="material-symbols-outlined text-3xl">shield</span>
+            </div>
+            <h1 class="font-display text-2xl font-bold tracking-tight text-white">PhishRadar</h1>
+        </a>
+
+        <!-- Desktop nav -->
+        <div class="hidden md:flex items-center gap-10">
+            <a class="text-sm font-medium text-slate-400 hover:text-primary transition-colors" href="scan.html">Scan Link</a>
+            <a class="text-sm font-medium text-primary" href="report.html">Report Scam</a>
+            <a class="text-sm font-medium text-slate-400 hover:text-primary transition-colors" href="dashboard.html">Dashboard</a>
+        </div>
+
+        <!-- Right side -->
+        <div class="flex items-center gap-4">
+            <a href="scan.html" class="hidden md:inline-flex bg-primary text-background-dark px-6 py-2.5 rounded-full font-display font-bold text-sm hover:scale-105 transition-transform">
+                Scan Now
+            </a>
+            <!-- Hamburger (mobile) -->
+            <button id="menu-btn" class="md:hidden text-slate-300 hover:text-primary transition-colors" aria-label="Toggle menu">
+                <span id="menu-icon" class="material-symbols-outlined text-3xl">menu</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="hidden md:hidden border-t border-border-dark bg-background-dark/95 px-6 py-6 flex flex-col gap-4">
+        <a href="index.html"     class="text-sm font-medium text-slate-300 hover:text-primary transition-colors py-2">Home</a>
+        <a href="scan.html"      class="text-sm font-medium text-slate-300 hover:text-primary transition-colors py-2">Scan Link</a>
+        <a href="report.html"    class="text-sm font-medium text-primary py-2">Report Scam</a>
+        <a href="dashboard.html" class="text-sm font-medium text-slate-300 hover:text-primary transition-colors py-2">Dashboard</a>
+    </div>
 </nav>
+
+<!-- ═══════════════════════════ MAIN ═══════════════════════════ -->
 <main class="flex-grow max-w-4xl mx-auto w-full px-6 py-12">
-<!-- Header Section -->
-<header class="mb-12">
-<nav class="flex items-center gap-2 text-sm font-medium text-slate-500 mb-4">
-<a class="hover:text-primary transition-colors" href="#">Home</a>
-<span class="material-symbols-outlined text-xs">chevron_right</span>
-<span class="text-slate-300">Report a Scam</span>
-</nav>
-<h1 class="font-display text-5xl font-extrabold text-white mb-4">Report a Scam</h1>
-<p class="text-lg text-slate-400 max-w-2xl font-light">Help us protect the community by reporting suspicious links, calls, or emails. Your submission helps train our detection engine.</p>
-</header>
-<!-- Main Form Card -->
-<div class="bg-surface border border-border-muted rounded-form p-8 md:p-10 shadow-2xl">
-<form action="#" class="space-y-8" method="POST">
-<!-- Type of Report Toggle -->
-<div class="space-y-3">
-<label class="font-mono text-xs uppercase tracking-widest text-slate-500">Type of Report</label>
-<div class="flex p-1 bg-background-dark/50 border border-border-muted rounded-xl w-full max-w-md">
-<label class="flex-1 text-center cursor-pointer group">
-<input checked="" class="sr-only peer" name="report_type" type="radio"/>
-<div class="py-2.5 rounded-lg text-sm font-semibold text-slate-400 peer-checked:bg-primary peer-checked:text-background-dark transition-all duration-200">
-                                Link
-                            </div>
-</label>
-<label class="flex-1 text-center cursor-pointer group">
-<input class="sr-only peer" name="report_type" type="radio"/>
-<div class="py-2.5 rounded-lg text-sm font-semibold text-slate-400 peer-checked:bg-primary peer-checked:text-background-dark transition-all duration-200">
-                                Phone Number
-                            </div>
-</label>
-<label class="flex-1 text-center cursor-pointer group">
-<input class="sr-only peer" name="report_type" type="radio"/>
-<div class="py-2.5 rounded-lg text-sm font-semibold text-slate-400 peer-checked:bg-primary peer-checked:text-background-dark transition-all duration-200">
-                                Email
-                            </div>
-</label>
-</div>
-</div>
-<!-- Suspicious Item Input -->
-<div class="space-y-3">
-<label class="font-mono text-xs uppercase tracking-widest text-slate-500" for="item">Suspicious Item</label>
-<div class="relative group">
-<input class="w-full bg-background-dark border border-border-muted focus:border-primary focus:ring-4 focus:ring-primary/10 rounded-xl px-4 py-4 text-white font-mono placeholder:text-slate-600 transition-all outline-none" id="item" placeholder="https://suspicious-site.com/login" type="text"/>
-<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-slate-600 group-focus-within:text-primary transition-colors">link</span>
-</div>
-</div>
-<!-- Description Textarea -->
-<div class="space-y-3">
-<label class="font-mono text-xs uppercase tracking-widest text-slate-500" for="description">Description (Optional)</label>
-<textarea class="w-full bg-background-dark border border-border-muted focus:border-primary focus:ring-4 focus:ring-primary/10 rounded-xl px-4 py-4 text-white font-body placeholder:text-slate-600 transition-all outline-none resize-none" id="description" placeholder="How did you receive this? Any additional details..." rows="4"></textarea>
-</div>
-<!-- Security Note -->
-<div class="flex items-start gap-3 p-4 bg-primary/5 rounded-xl border border-primary/10">
-<span class="material-symbols-outlined text-primary mt-0.5">info</span>
-<p class="text-xs text-slate-400 leading-relaxed">By submitting this report, you consent to our automated analysis of the provided data. We do not store personal identifiers beyond what is necessary for security validation.</p>
-</div>
-<!-- Submit Button -->
-<button class="w-full bg-primary hover:bg-primary/90 text-background-dark font-display font-extrabold text-lg py-5 rounded-full transition-all shadow-lg shadow-primary/20 hover:shadow-primary/40 active:scale-[0.98]" type="submit">
-                    Submit Report
-                </button>
-</form>
-<!-- Success State (Hidden by default, shown via class manipulation in production) -->
-<div class="hidden flex-col items-center justify-center py-12 text-center">
-<div class="w-20 h-20 bg-green-500/10 text-green-500 rounded-full flex items-center justify-center mb-6">
-<span class="material-symbols-outlined text-5xl">check_circle</span>
-</div>
-<h3 class="font-display text-3xl font-bold text-white mb-2">Report Submitted</h3>
-<p class="text-slate-400">Thank you for helping keep the community safe. Our team is investigating.</p>
-<button class="mt-8 text-primary font-medium hover:underline">Submit another report</button>
-</div>
-</div>
+    <!-- Breadcrumb -->
+    <nav class="flex items-center gap-2 text-sm font-medium text-slate-500 mb-4">
+        <a class="hover:text-primary transition-colors" href="index.html">Home</a>
+        <span class="material-symbols-outlined text-xs">chevron_right</span>
+        <span class="text-slate-300">Report a Scam</span>
+    </nav>
+
+    <!-- Page header -->
+    <header class="mb-12">
+        <h1 class="font-display text-5xl font-extrabold text-white mb-4">Report a Scam</h1>
+        <p class="text-lg text-slate-400 max-w-2xl">Help us protect the community by reporting suspicious links, calls, or emails. Your submission helps train our detection engine.</p>
+    </header>
+
+    <!-- Form card -->
+    <div class="bg-card-dark border border-border-dark rounded-xl p-8 md:p-10 shadow-2xl">
+
+        <!-- Form (shown by default) -->
+        <form id="report-form" class="space-y-8">
+            <!-- Report type toggle -->
+            <div class="space-y-3">
+                <label class="font-mono text-xs uppercase tracking-widest text-slate-500">Type of Report</label>
+                <div class="flex p-1 bg-background-dark/50 border border-border-dark rounded-xl w-full max-w-md">
+                    <label class="flex-1 text-center cursor-pointer">
+                        <input checked class="sr-only peer" name="report_type" type="radio" value="link"/>
+                        <div class="py-2.5 rounded-lg text-sm font-semibold text-slate-400 peer-checked:bg-primary peer-checked:text-background-dark transition-all duration-200">Link</div>
+                    </label>
+                    <label class="flex-1 text-center cursor-pointer">
+                        <input class="sr-only peer" name="report_type" type="radio" value="phone"/>
+                        <div class="py-2.5 rounded-lg text-sm font-semibold text-slate-400 peer-checked:bg-primary peer-checked:text-background-dark transition-all duration-200">Phone Number</div>
+                    </label>
+                    <label class="flex-1 text-center cursor-pointer">
+                        <input class="sr-only peer" name="report_type" type="radio" value="email"/>
+                        <div class="py-2.5 rounded-lg text-sm font-semibold text-slate-400 peer-checked:bg-primary peer-checked:text-background-dark transition-all duration-200">Email</div>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Suspicious item input -->
+            <div class="space-y-3">
+                <label class="font-mono text-xs uppercase tracking-widest text-slate-500" for="item">Suspicious Item</label>
+                <div class="relative group">
+                    <input class="w-full bg-background-dark border border-border-dark focus:border-primary focus:ring-4 focus:ring-primary/10 rounded-xl px-4 py-4 text-white font-mono placeholder:text-slate-600 transition-all outline-none" id="item" placeholder="https://suspicious-site.com/login" type="text" required/>
+                    <span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-slate-600 group-focus-within:text-primary transition-colors">link</span>
+                </div>
+            </div>
+
+            <!-- Description textarea -->
+            <div class="space-y-3">
+                <label class="font-mono text-xs uppercase tracking-widest text-slate-500" for="description">Description <span class="normal-case text-slate-600">(Optional)</span></label>
+                <textarea class="w-full bg-background-dark border border-border-dark focus:border-primary focus:ring-4 focus:ring-primary/10 rounded-xl px-4 py-4 text-white font-sans placeholder:text-slate-600 transition-all outline-none resize-none" id="description" placeholder="How did you receive this? Any additional details..." rows="4"></textarea>
+            </div>
+
+            <!-- Privacy note -->
+            <div class="flex items-start gap-3 p-4 bg-primary/5 rounded-xl border border-primary/10">
+                <span class="material-symbols-outlined text-primary mt-0.5 shrink-0">info</span>
+                <p class="text-xs text-slate-400 leading-relaxed">By submitting this report, you consent to our automated analysis of the provided data. We do not store personal identifiers beyond what is necessary for security validation.</p>
+            </div>
+
+            <!-- Submit button -->
+            <button class="w-full bg-primary hover:bg-primary/90 text-background-dark font-display font-extrabold text-lg py-5 rounded-full transition-all shadow-lg shadow-primary/20 hover:shadow-primary/40 active:scale-[0.98]" type="submit">
+                Submit Report
+            </button>
+        </form>
+
+        <!-- Success state (hidden by default, shown after submit) -->
+        <div id="success-state" class="hidden flex-col items-center justify-center py-12 text-center">
+            <div class="w-20 h-20 bg-success/10 text-success rounded-full flex items-center justify-center mb-6">
+                <span class="material-symbols-outlined text-5xl">check_circle</span>
+            </div>
+            <h3 class="font-display text-3xl font-bold text-white mb-2">Report Submitted</h3>
+            <p class="text-slate-400">Thank you for helping keep the community safe. Our team is investigating.</p>
+            <button id="another-report-btn" class="mt-8 text-primary font-medium hover:underline transition-colors">
+                Submit another report
+            </button>
+        </div>
+    </div>
 </main>
-<!-- Footer -->
-<footer class="mt-20 border-t border-border-muted bg-background-dark/50 pt-16 pb-8">
-<div class="max-w-7xl mx-auto px-6">
-<div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
-<div class="col-span-1 md:col-span-2">
-<div class="flex items-center gap-3 mb-6">
-<div class="size-8 flex items-center justify-center rounded-md bg-primary/10 text-primary">
-<span class="material-symbols-outlined">shield</span>
-</div>
-<h2 class="font-display text-xl font-bold text-white">PhishRadar</h2>
-</div>
-<p class="text-slate-400 max-w-sm mb-6">Building a safer digital world through collective intelligence and advanced AI phishing detection.</p>
-<div class="flex gap-4">
-<a class="w-10 h-10 rounded-full border border-border-muted flex items-center justify-center text-slate-400 hover:text-primary hover:border-primary transition-all" href="#">
-<span class="material-symbols-outlined text-xl">share</span>
-</a>
-<a class="w-10 h-10 rounded-full border border-border-muted flex items-center justify-center text-slate-400 hover:text-primary hover:border-primary transition-all" href="#">
-<span class="material-symbols-outlined text-xl">alternate_email</span>
-</a>
-</div>
-</div>
-<div>
-<h3 class="font-display text-white font-bold mb-6">Platform</h3>
-<ul class="space-y-4 text-slate-400 text-sm">
-<li><a class="hover:text-primary transition-colors" href="#">Scan Engine</a></li>
-<li><a class="hover:text-primary transition-colors" href="#">API for Business</a></li>
-<li><a class="hover:text-primary transition-colors" href="#">Community Stats</a></li>
-<li><a class="hover:text-primary transition-colors" href="#">Extension</a></li>
-</ul>
-</div>
-<div>
-<h3 class="font-display text-white font-bold mb-6">Resources</h3>
-<ul class="space-y-4 text-slate-400 text-sm">
-<li><a class="hover:text-primary transition-colors" href="#">Phishing Guide</a></li>
-<li><a class="hover:text-primary transition-colors" href="#">Report Taxonomy</a></li>
-<li><a class="hover:text-primary transition-colors" href="#">Privacy Policy</a></li>
-<li><a class="hover:text-primary transition-colors" href="#">Terms of Service</a></li>
-</ul>
-</div>
-</div>
-<div class="pt-8 border-t border-border-muted/30 flex flex-col md:flex-row justify-between items-center gap-4">
-<p class="text-xs text-slate-500 font-mono">© 2024 PHISHRADAR. PROTOCOL SECURED.</p>
-<div class="flex gap-8">
-<div class="flex items-center gap-2">
-<span class="size-2 rounded-full bg-green-500 animate-pulse"></span>
-<span class="text-xs text-slate-500 font-mono">SYSTEMS OPERATIONAL</span>
-</div>
-</div>
-</div>
-</div>
+
+<!-- ═══════════════════════════ FOOTER ═══════════════════════════ -->
+<footer class="mt-20 border-t border-border-dark bg-background-dark/50 pt-16 pb-8">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+            <div class="col-span-1 md:col-span-2">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="size-8 flex items-center justify-center rounded-md bg-primary/10 text-primary">
+                        <span class="material-symbols-outlined">shield</span>
+                    </div>
+                    <h2 class="font-display text-xl font-bold text-white">PhishRadar</h2>
+                </div>
+                <p class="text-slate-400 max-w-sm mb-6 text-sm leading-relaxed">Building a safer digital world through collective intelligence and advanced phishing detection.</p>
+                <div class="flex gap-4">
+                    <a class="w-10 h-10 rounded-full border border-border-dark flex items-center justify-center text-slate-400 hover:text-primary hover:border-primary transition-all" href="#">
+                        <span class="material-symbols-outlined text-xl">share</span>
+                    </a>
+                    <a class="w-10 h-10 rounded-full border border-border-dark flex items-center justify-center text-slate-400 hover:text-primary hover:border-primary transition-all" href="#">
+                        <span class="material-symbols-outlined text-xl">alternate_email</span>
+                    </a>
+                </div>
+            </div>
+            <div>
+                <h3 class="font-display text-white font-bold mb-6">Platform</h3>
+                <ul class="space-y-4 text-slate-400 text-sm">
+                    <li><a class="hover:text-primary transition-colors" href="scan.html">Scan Engine</a></li>
+                    <li><a class="hover:text-primary transition-colors" href="dashboard.html">Community Stats</a></li>
+                    <li><a class="hover:text-primary transition-colors" href="#">API for Business</a></li>
+                    <li><a class="hover:text-primary transition-colors" href="#">Extension</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="font-display text-white font-bold mb-6">Resources</h3>
+                <ul class="space-y-4 text-slate-400 text-sm">
+                    <li><a class="hover:text-primary transition-colors" href="#">Phishing Guide</a></li>
+                    <li><a class="hover:text-primary transition-colors" href="#">Privacy Policy</a></li>
+                    <li><a class="hover:text-primary transition-colors" href="#">Terms of Service</a></li>
+                    <li><a class="hover:text-primary transition-colors" href="#">Contact Support</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="pt-8 border-t border-border-dark/30 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-xs text-slate-500 font-mono">© 2025 PHISHRADAR. PROTOCOL SECURED.</p>
+            <div class="flex items-center gap-2">
+                <span class="size-2 rounded-full bg-success animate-pulse"></span>
+                <span class="text-xs text-slate-500 font-mono">SYSTEMS OPERATIONAL</span>
+            </div>
+        </div>
+    </div>
 </footer>
-</body></html>
+
+<script>
+    // Mobile menu toggle
+    const btn = document.getElementById('menu-btn');
+    const menu = document.getElementById('mobile-menu');
+    const icon = document.getElementById('menu-icon');
+    btn.addEventListener('click', () => {
+        menu.classList.toggle('hidden');
+        icon.textContent = menu.classList.contains('hidden') ? 'menu' : 'close';
+    });
+
+    // Form submission — show success state
+    const form = document.getElementById('report-form');
+    const successState = document.getElementById('success-state');
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        form.classList.add('hidden');
+        successState.classList.remove('hidden');
+        successState.classList.add('flex');
+        successState.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+
+    // "Submit another report" — reset and show form again
+    document.getElementById('another-report-btn').addEventListener('click', () => {
+        form.reset();
+        successState.classList.add('hidden');
+        successState.classList.remove('flex');
+        form.classList.remove('hidden');
+    });
+</script>
+</body>
+</html>

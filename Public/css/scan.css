@@ -1,0 +1,10 @@
+/* ============================================================
+   scan.css — Styles for scan.html (URL Scanner page)
+   ============================================================ */
+
+/* Dot-grid background */
+body {
+    background-color: #0a0d13;
+    background-image: radial-gradient(#1e2738 0.5px, transparent 0.5px);
+    background-size: 24px 24px;
+}

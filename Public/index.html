@@ -1,200 +1,236 @@
 <!DOCTYPE html>
-
-<html class="dark" lang="en"><head>
+<html class="dark" lang="en">
+<head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PhishRadar | Scam Detection Platform</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Space+Mono&amp;family=Syne:wght@400;700;800&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
 <script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#00d4ff",
-                        "background-light": "#f5f8f8",
-                        "background-dark": "#0a0d13",
-                        "card-dark": "#0f1420",
-                        "border-dark": "#1e2738",
-                    },
-                    fontFamily: {
-                        "display": ["Space Grotesk", "sans-serif"],
-                        "syne": ["Syne", "sans-serif"],
-                        "mono": ["Space Mono", "monospace"],
-                    },
-                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+                colors: {
+                    "primary":          "#00d4ff",
+                    "danger":           "#ff3e5e",
+                    "warning":          "#ffaa00",
+                    "success":          "#00e5a0",
+                    "background-dark":  "#0a0d13",
+                    "card-dark":        "#0f1420",
+                    "border-dark":      "#1e2738",
                 },
+                fontFamily: {
+                    "display": ["Syne", "sans-serif"],
+                    "sans":    ["Space Grotesk", "sans-serif"],
+                    "mono":    ["Space Mono", "monospace"],
+                },
+                borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
             },
-        }
-    </script>
-<style>
-        .grid-bg {
-            background-image: linear-gradient(to right, rgba(0, 212, 255, 0.05) 1px, transparent 1px),
-                              linear-gradient(to bottom, rgba(0, 212, 255, 0.05) 1px, transparent 1px);
-            background-size: 40px 40px;
-        }
-    </style>
+        },
+    }
+</script>
+<link href="css/index.css" rel="stylesheet"/>
 </head>
-<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased overflow-x-hidden">
+<body class="bg-background-dark font-sans text-slate-100 antialiased overflow-x-hidden">
+
+<!-- ═══════════════════════════ NAVIGATION ═══════════════════════════ -->
 <nav class="sticky top-0 z-50 w-full border-b border-border-dark bg-background-dark/80 backdrop-blur-md">
-<div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-<div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-primary text-3xl">shield</span>
-<span class="font-syne font-bold text-2xl tracking-tight text-primary">PhishRadar</span>
-</div>
-<div class="hidden md:flex items-center gap-10">
-<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Scan Link</a>
-<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Report Scam</a>
-<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Dashboard</a>
-</div>
-<div class="flex items-center gap-4">
-<button class="bg-primary hover:bg-primary/90 text-background-dark px-6 py-2.5 rounded-lg font-bold text-sm transition-all shadow-lg shadow-primary/20">
-                    Scan Now
-                </button>
-</div>
-</div>
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+        <!-- Logo -->
+        <a href="index.html" class="flex items-center gap-2.5">
+            <span class="material-symbols-outlined text-primary text-3xl">shield</span>
+            <span class="font-display font-bold text-2xl tracking-tight text-primary">PhishRadar</span>
+        </a>
+
+        <!-- Desktop nav links -->
+        <div class="hidden md:flex items-center gap-10">
+            <a class="text-sm font-medium text-slate-400 hover:text-primary transition-colors" href="scan.html">Scan Link</a>
+            <a class="text-sm font-medium text-slate-400 hover:text-primary transition-colors" href="report.html">Report Scam</a>
+            <a class="text-sm font-medium text-slate-400 hover:text-primary transition-colors" href="dashboard.html">Dashboard</a>
+        </div>
+
+        <!-- Right side -->
+        <div class="flex items-center gap-4">
+            <a href="scan.html" class="bg-primary hover:bg-primary/90 text-background-dark px-6 py-2.5 rounded-lg font-bold text-sm transition-all shadow-lg shadow-primary/20">
+                Scan Now
+            </a>
+            <!-- Hamburger (mobile) -->
+            <button id="menu-btn" class="md:hidden text-slate-300 hover:text-primary transition-colors" aria-label="Toggle menu">
+                <span id="menu-icon" class="material-symbols-outlined text-3xl">menu</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="hidden md:hidden border-t border-border-dark bg-background-dark/95 px-6 py-6 flex flex-col gap-4">
+        <a href="scan.html"      class="text-sm font-medium text-slate-300 hover:text-primary transition-colors py-2">Scan Link</a>
+        <a href="report.html"    class="text-sm font-medium text-slate-300 hover:text-primary transition-colors py-2">Report Scam</a>
+        <a href="dashboard.html" class="text-sm font-medium text-slate-300 hover:text-primary transition-colors py-2">Dashboard</a>
+    </div>
 </nav>
+
+<!-- ═══════════════════════════ HERO ═══════════════════════════ -->
 <main class="grid-bg relative">
-<section class="max-w-7xl mx-auto px-6 pt-24 pb-32">
-<div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-<div class="flex flex-col items-start gap-8">
-<div class="px-4 py-1.5 border border-primary/40 rounded-full">
-<span class="font-mono text-xs uppercase tracking-widest text-primary font-bold">Scam Detection Platform</span>
-</div>
-<h1 class="font-syne font-800 text-5xl md:text-7xl leading-[1.1] tracking-tight text-white">
-                        Don't Click Until You <span class="text-primary">Know It's Safe</span>
-</h1>
-<p class="text-lg text-slate-400 max-w-xl leading-relaxed">
-                        Stay protected from malicious links and advanced phishing attempts with our real-time AI analysis engine. Verify any URL in seconds.
-                    </p>
-<div class="flex flex-wrap gap-4 pt-4">
-<button class="bg-primary text-background-dark px-8 py-4 rounded-xl font-bold text-lg hover:scale-105 transition-transform flex items-center gap-2">
-<span class="material-symbols-outlined">search</span>
-                            Scan a Link
-                        </button>
-<button class="border-2 border-primary/40 text-primary px-8 py-4 rounded-xl font-bold text-lg hover:bg-primary/5 transition-colors">
-                            Report a Scam
-                        </button>
-</div>
-</div>
-<div class="relative">
-<div class="absolute -inset-10 bg-primary/10 blur-[100px] rounded-full"></div>
-<div class="relative bg-card-dark border border-border-dark p-6 rounded-2xl shadow-2xl">
-<div class="flex items-center justify-between mb-6 border-b border-border-dark pb-4">
-<div class="flex items-center gap-3">
-<div class="size-3 rounded-full bg-red-500"></div>
-<div class="size-3 rounded-full bg-yellow-500"></div>
-<div class="size-3 rounded-full bg-green-500"></div>
-</div>
-<span class="text-xs font-mono text-slate-500">analysis_engine_v2.0</span>
-</div>
-<div class="space-y-6">
-<div class="bg-background-dark p-4 rounded-lg border border-border-dark flex items-center justify-between">
-<code class="text-sm text-slate-300 overflow-hidden truncate mr-4">https://secure-login-bank-auth.com/verify</code>
-<span class="bg-red-500/10 text-red-500 text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider border border-red-500/20">Dangerous</span>
-</div>
-<div class="grid grid-cols-2 gap-4">
-<div class="p-4 bg-background-dark/50 rounded-lg border border-border-dark">
-<p class="text-[10px] text-slate-500 uppercase font-bold mb-1">Risk Score</p>
-<p class="text-2xl font-syne font-bold text-red-500">98/100</p>
-</div>
-<div class="p-4 bg-background-dark/50 rounded-lg border border-border-dark">
-<p class="text-[10px] text-slate-500 uppercase font-bold mb-1">Detection</p>
-<p class="text-2xl font-syne font-bold text-primary">Phishing</p>
-</div>
-</div>
-<div class="space-y-2">
-<div class="h-2 w-full bg-border-dark rounded-full overflow-hidden">
-<div class="h-full bg-red-500 w-[98%]"></div>
-</div>
-<p class="text-xs text-slate-500 italic text-center">Threat detected: Domain masquerading as financial institution.</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section class="max-w-7xl mx-auto px-6 py-24 border-t border-border-dark">
-<h2 class="font-syne font-bold text-4xl text-white mb-16">How It Works</h2>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-<div class="bg-card-dark border border-border-dark p-10 rounded-2xl group hover:border-primary/30 transition-colors">
-<span class="font-mono text-4xl text-primary font-bold opacity-30 group-hover:opacity-100 transition-opacity">01</span>
-<h3 class="font-syne font-bold text-2xl text-white mt-6 mb-4">Submit</h3>
-<p class="text-slate-400 leading-relaxed">Paste any suspicious URL, email link, or domain into our secure scanning interface for instant verification.</p>
-</div>
-<div class="bg-card-dark border border-border-dark p-10 rounded-2xl group hover:border-primary/30 transition-colors">
-<span class="font-mono text-4xl text-primary font-bold opacity-30 group-hover:opacity-100 transition-opacity">02</span>
-<h3 class="font-syne font-bold text-2xl text-white mt-6 mb-4">Analyze</h3>
-<p class="text-slate-400 leading-relaxed">Our AI engine scans domain age, SSL records, and visual similarity to known brands to detect hidden threats.</p>
-</div>
-<div class="bg-card-dark border border-border-dark p-10 rounded-2xl group hover:border-primary/30 transition-colors">
-<span class="font-mono text-4xl text-primary font-bold opacity-30 group-hover:opacity-100 transition-opacity">03</span>
-<h3 class="font-syne font-bold text-2xl text-white mt-6 mb-4">Get Result</h3>
-<p class="text-slate-400 leading-relaxed">Receive a detailed risk report within seconds, categorizing the threat level from safe to critical danger.</p>
-</div>
-</div>
-</section>
-<section class="w-full bg-primary/5 border-y border-border-dark py-16">
-<div class="max-w-7xl mx-auto px-6">
-<div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
-<div class="flex flex-col gap-2">
-<span class="font-syne font-bold text-5xl text-primary">1,200+</span>
-<span class="font-mono text-xs uppercase tracking-widest text-slate-500">Scams Reported</span>
-</div>
-<div class="flex flex-col gap-2">
-<span class="font-syne font-bold text-5xl text-primary">890k+</span>
-<span class="font-mono text-xs uppercase tracking-widest text-slate-500">Links Scanned</span>
-</div>
-<div class="flex flex-col gap-2">
-<span class="font-syne font-bold text-5xl text-primary">3</span>
-<span class="font-mono text-xs uppercase tracking-widest text-slate-500">Risk Levels</span>
-</div>
-</div>
-</div>
-</section>
+    <section class="max-w-7xl mx-auto px-6 pt-24 pb-32">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <!-- Left copy -->
+            <div class="flex flex-col items-start gap-8">
+                <div class="px-4 py-1.5 border border-primary/40 rounded-full">
+                    <span class="font-mono text-xs uppercase tracking-widest text-primary font-bold">Scam Detection Platform</span>
+                </div>
+                <h1 class="font-display font-extrabold text-5xl md:text-7xl leading-[1.1] tracking-tight text-white">
+                    Don't Click Until You <span class="text-primary">Know It's Safe</span>
+                </h1>
+                <p class="text-lg text-slate-400 max-w-xl leading-relaxed">
+                    Stay protected from malicious links and advanced phishing attempts with our real-time analysis engine. Verify any URL, phone number, or email in seconds.
+                </p>
+                <div class="flex flex-wrap gap-4 pt-4">
+                    <a href="scan.html" class="bg-primary text-background-dark px-8 py-4 rounded-xl font-bold text-lg hover:scale-105 transition-transform flex items-center gap-2 shadow-lg shadow-primary/25">
+                        <span class="material-symbols-outlined">search</span>
+                        Scan a Link
+                    </a>
+                    <a href="report.html" class="border-2 border-primary/40 text-primary px-8 py-4 rounded-xl font-bold text-lg hover:bg-primary/5 transition-colors">
+                        Report a Scam
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right mock UI -->
+            <div class="relative">
+                <div class="absolute -inset-10 bg-primary/10 blur-[100px] rounded-full pointer-events-none"></div>
+                <div class="relative bg-card-dark border border-border-dark p-6 rounded-2xl shadow-2xl">
+                    <div class="flex items-center justify-between mb-6 border-b border-border-dark pb-4">
+                        <div class="flex items-center gap-3">
+                            <div class="size-3 rounded-full bg-red-500"></div>
+                            <div class="size-3 rounded-full bg-yellow-500"></div>
+                            <div class="size-3 rounded-full bg-green-500"></div>
+                        </div>
+                        <span class="text-xs font-mono text-slate-500">analysis_engine_v2.0</span>
+                    </div>
+                    <div class="space-y-6">
+                        <div class="bg-background-dark p-4 rounded-lg border border-border-dark flex items-center justify-between">
+                            <code class="text-sm text-slate-300 overflow-hidden truncate mr-4">https://secure-login-bank-auth.com/verify</code>
+                            <span class="bg-red-500/10 text-red-500 text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider border border-red-500/20 shrink-0">Dangerous</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="p-4 bg-background-dark/50 rounded-lg border border-border-dark">
+                                <p class="text-[10px] text-slate-500 uppercase font-bold mb-1">Risk Score</p>
+                                <p class="text-2xl font-display font-bold text-red-500">98/100</p>
+                            </div>
+                            <div class="p-4 bg-background-dark/50 rounded-lg border border-border-dark">
+                                <p class="text-[10px] text-slate-500 uppercase font-bold mb-1">Detection</p>
+                                <p class="text-2xl font-display font-bold text-primary">Phishing</p>
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="h-2 w-full bg-border-dark rounded-full overflow-hidden">
+                                <div class="h-full bg-red-500 w-[98%] transition-all duration-1000"></div>
+                            </div>
+                            <p class="text-xs text-slate-500 italic text-center">Threat detected: Domain masquerading as financial institution.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════ HOW IT WORKS ═══════ -->
+    <section class="max-w-7xl mx-auto px-6 py-24 border-t border-border-dark">
+        <h2 class="font-display font-bold text-4xl text-white mb-16">How It Works</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-card-dark border border-border-dark p-10 rounded-2xl group hover:border-primary/30 transition-colors">
+                <span class="font-mono text-4xl text-primary font-bold opacity-30 group-hover:opacity-100 transition-opacity">01</span>
+                <h3 class="font-display font-bold text-2xl text-white mt-6 mb-4">Submit</h3>
+                <p class="text-slate-400 leading-relaxed">Paste any suspicious URL, email address, or phone number into our secure scanning interface for instant verification.</p>
+            </div>
+            <div class="bg-card-dark border border-border-dark p-10 rounded-2xl group hover:border-primary/30 transition-colors">
+                <span class="font-mono text-4xl text-primary font-bold opacity-30 group-hover:opacity-100 transition-opacity">02</span>
+                <h3 class="font-display font-bold text-2xl text-white mt-6 mb-4">Analyze</h3>
+                <p class="text-slate-400 leading-relaxed">Our engine cross-references threat databases, scans domain age, SSL records, and community reports to detect hidden threats.</p>
+            </div>
+            <div class="bg-card-dark border border-border-dark p-10 rounded-2xl group hover:border-primary/30 transition-colors">
+                <span class="font-mono text-4xl text-primary font-bold opacity-30 group-hover:opacity-100 transition-opacity">03</span>
+                <h3 class="font-display font-bold text-2xl text-white mt-6 mb-4">Get Result</h3>
+                <p class="text-slate-400 leading-relaxed">Receive a clear risk score — Safe, Suspicious, or Dangerous — with detailed reasoning so you can act confidently.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════ STATS BANNER ═══════ -->
+    <section class="w-full bg-primary/5 border-y border-border-dark py-16">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
+                <div class="flex flex-col gap-2">
+                    <span class="font-display font-bold text-5xl text-primary">1,200+</span>
+                    <span class="font-mono text-xs uppercase tracking-widest text-slate-500">Scams Reported</span>
+                </div>
+                <div class="flex flex-col gap-2">
+                    <span class="font-display font-bold text-5xl text-primary">890k+</span>
+                    <span class="font-mono text-xs uppercase tracking-widest text-slate-500">Links Scanned</span>
+                </div>
+                <div class="flex flex-col gap-2">
+                    <span class="font-display font-bold text-5xl text-primary">3</span>
+                    <span class="font-mono text-xs uppercase tracking-widest text-slate-500">Risk Levels</span>
+                </div>
+            </div>
+        </div>
+    </section>
 </main>
+
+<!-- ═══════════════════════════ FOOTER ═══════════════════════════ -->
 <footer class="bg-background-dark border-t border-border-dark py-20">
-<div class="max-w-7xl mx-auto px-6">
-<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-12">
-<div class="space-y-4">
-<div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-primary text-2xl">shield</span>
-<span class="font-syne font-bold text-xl tracking-tight text-white">PhishRadar</span>
-</div>
-<p class="text-slate-500 max-w-xs text-sm leading-relaxed">
-                        Built to fight online scams and protect users from digital threats. AI-powered security for everyone.
-                    </p>
-</div>
-<div class="flex flex-wrap gap-x-12 gap-y-6">
-<div class="flex flex-col gap-4">
-<span class="text-xs font-bold uppercase tracking-widest text-slate-400">Product</span>
-<a class="text-sm text-slate-500 hover:text-primary" href="#">Scanner</a>
-<a class="text-sm text-slate-500 hover:text-primary" href="#">API Access</a>
-<a class="text-sm text-slate-500 hover:text-primary" href="#">Browser Extension</a>
-</div>
-<div class="flex flex-col gap-4">
-<span class="text-xs font-bold uppercase tracking-widest text-slate-400">Company</span>
-<a class="text-sm text-slate-500 hover:text-primary" href="#">About Us</a>
-<a class="text-sm text-slate-500 hover:text-primary" href="#">Privacy Policy</a>
-<a class="text-sm text-slate-500 hover:text-primary" href="#">Terms of Service</a>
-</div>
-<div class="flex flex-col gap-4">
-<span class="text-xs font-bold uppercase tracking-widest text-slate-400">Social</span>
-<a class="text-sm text-slate-500 hover:text-primary" href="#">Twitter</a>
-<a class="text-sm text-slate-500 hover:text-primary" href="#">GitHub</a>
-<a class="text-sm text-slate-500 hover:text-primary" href="#">Discord</a>
-</div>
-</div>
-</div>
-<div class="mt-20 pt-8 border-t border-border-dark flex flex-col md:flex-row justify-between items-center gap-4">
-<p class="text-xs text-slate-600">© 2024 PhishRadar. All rights reserved.</p>
-<div class="flex gap-6">
-<div class="size-2 bg-primary rounded-full animate-pulse"></div>
-<span class="text-[10px] font-mono text-primary uppercase tracking-widest font-bold">System Status: Operational</span>
-</div>
-</div>
-</div>
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-12">
+            <div class="space-y-4">
+                <div class="flex items-center gap-2">
+                    <span class="material-symbols-outlined text-primary text-2xl">shield</span>
+                    <span class="font-display font-bold text-xl tracking-tight text-white">PhishRadar</span>
+                </div>
+                <p class="text-slate-500 max-w-xs text-sm leading-relaxed">
+                    Built to fight online scams and protect users from digital threats. Community-powered security for everyone.
+                </p>
+            </div>
+            <div class="flex flex-wrap gap-x-12 gap-y-6">
+                <div class="flex flex-col gap-4">
+                    <span class="text-xs font-bold uppercase tracking-widest text-slate-400">Product</span>
+                    <a class="text-sm text-slate-500 hover:text-primary transition-colors" href="scan.html">Scanner</a>
+                    <a class="text-sm text-slate-500 hover:text-primary transition-colors" href="report.html">Report a Scam</a>
+                    <a class="text-sm text-slate-500 hover:text-primary transition-colors" href="dashboard.html">Dashboard</a>
+                </div>
+                <div class="flex flex-col gap-4">
+                    <span class="text-xs font-bold uppercase tracking-widest text-slate-400">Company</span>
+                    <a class="text-sm text-slate-500 hover:text-primary transition-colors" href="#">About Us</a>
+                    <a class="text-sm text-slate-500 hover:text-primary transition-colors" href="#">Privacy Policy</a>
+                    <a class="text-sm text-slate-500 hover:text-primary transition-colors" href="#">Terms of Service</a>
+                </div>
+                <div class="flex flex-col gap-4">
+                    <span class="text-xs font-bold uppercase tracking-widest text-slate-400">Social</span>
+                    <a class="text-sm text-slate-500 hover:text-primary transition-colors" href="#">Twitter</a>
+                    <a class="text-sm text-slate-500 hover:text-primary transition-colors" href="#">GitHub</a>
+                    <a class="text-sm text-slate-500 hover:text-primary transition-colors" href="#">Discord</a>
+                </div>
+            </div>
+        </div>
+        <div class="mt-20 pt-8 border-t border-border-dark flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-xs text-slate-600">© 2025 PhishRadar. All rights reserved.</p>
+            <div class="flex items-center gap-3">
+                <div class="size-2 bg-primary rounded-full animate-pulse"></div>
+                <span class="text-[10px] font-mono text-primary uppercase tracking-widest font-bold">System Status: Operational</span>
+            </div>
+        </div>
+    </div>
 </footer>
-</body></html>
+
+<script>
+    const btn = document.getElementById('menu-btn');
+    const menu = document.getElementById('mobile-menu');
+    const icon = document.getElementById('menu-icon');
+    btn.addEventListener('click', () => {
+        menu.classList.toggle('hidden');
+        icon.textContent = menu.classList.contains('hidden') ? 'menu' : 'close';
+    });
+</script>
+</body>
+</html>
