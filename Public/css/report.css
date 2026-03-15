@@ -1,10 +1,58 @@
-/* ============================================================
-   report.css — Styles for report.html (Report a Scam page)
-   ============================================================ */
+@import url('https://api.fontshare.com/v2/css?f[]=clash-display@600,700&display=swap');
 
-/* Dot-grid background */
-body {
-    background-color: #0a0d13;
-    background-image: radial-gradient(circle at 2px 2px, rgba(0, 212, 255, 0.05) 1px, transparent 0);
-    background-size: 24px 24px;
+.font-clash { font-family: 'Clash Display', sans-serif; }
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
+
+.animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+    opacity: 0;
+}
+
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+
+/* Radar Rings Style */
+.radar-container {
+    position: fixed;
+    bottom: -100px;
+    left: -100px;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.radar-ring {
+    position: absolute;
+    border: 1px solid rgba(0, 212, 255, 0.05);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #06090f; }
+::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: #00d4ff; }
+
+/* Glassmorphism utility */
+.glass-card {
+    background: rgba(12, 17, 32, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Add Brand Colors since Tailwind config was removed from HTML */
+.text-electric-cyan { color: #00d4ff; }
+.text-primary { color: #00d4ff; }
+.bg-electric-cyan { background-color: #00d4ff; }
+.bg-electric-cyan\/10 { background-color: rgba(0, 212, 255, 0.1); }
+.bg-electric-cyan\/20 { background-color: rgba(0, 212, 255, 0.2); }
+.bg-primary\/20 { background-color: rgba(0, 212, 255, 0.2); }
+.bg-background-dark\/80 { background-color: rgba(6, 9, 15, 0.8); }
+
+#success-state { display: none; }

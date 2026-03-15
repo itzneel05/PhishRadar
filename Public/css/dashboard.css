@@ -1,10 +1,78 @@
-/* ============================================================
-   dashboard.css — Styles for dashboard.html (Scam Reports Dashboard)
-   ============================================================ */
+@import url('https://api.fontshare.com/v2/css?f[]=clash-display@600,700&display=swap');
 
-/* Dot-grid background */
 body {
-    background-color: #0a0d13;
-    background-image: radial-gradient(circle at 2px 2px, rgba(0, 212, 255, 0.05) 1px, transparent 0);
-    background-size: 24px 24px;
+    font-family: 'Inter', sans-serif;
+    background-color: #06090f;
+    color: #ffffff;
+}
+
+.font-clash {
+    font-family: 'Clash Display', sans-serif;
+}
+
+.font-mono {
+    font-family: 'JetBrains Mono', monospace;
+}
+
+@keyframes pulse-green {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(48, 209, 88, 0.7); }
+    70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(48, 209, 88, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(48, 209, 88, 0); }
+}
+
+.pulse-dot {
+    animation: pulse-green 2s infinite;
+}
+
+@keyframes float-up {
+    0% { transform: translateY(0); opacity: 0; }
+    50% { opacity: 0.5; }
+    100% { transform: translateY(-100vh); opacity: 0; }
+}
+
+.particle {
+    position: absolute;
+    background: #00d4ff;
+    border-radius: 50%;
+    pointer-events: none;
+    animation: float-up linear infinite;
+}
+
+.glass {
+    background: rgba(12, 17, 32, 0.7);
+    backdrop-filter: blur(24px);
+    border: 1px solid rgba(0, 212, 255, 0.05);
+}
+
+/* Add Brand Colors since Tailwind config was removed from HTML */
+.text-primary { color: #00d4ff; }
+.text-primary\/80 { color: rgba(0, 212, 255, 0.8); }
+.border-primary { border-color: #00d4ff; }
+.bg-background-dark\/80 { background-color: rgba(6, 9, 15, 0.8); }
+.hover\:text-primary:hover { color: #00d4ff; }
+
+.text-brand-cyan { color: #00d4ff; }
+.text-brand-red { color: #ff2d55; }
+.text-brand-amber { color: #ff9f0a; }
+.text-brand-green { color: #30d158; }
+.text-brand-muted { color: #64748b; }
+
+.bg-brand-cyan { background-color: #00d4ff; }
+.bg-brand-red { background-color: #ff2d55; }
+.bg-brand-amber { background-color: #ff9f0a; }
+.bg-brand-green { background-color: #30d158; }
+
+.bg-brand-cyan\/10 { background-color: rgba(0, 212, 255, 0.1); }
+.bg-brand-red\/10 { background-color: rgba(255, 45, 85, 0.1); }
+.bg-brand-amber\/10 { background-color: rgba(255, 159, 10, 0.1); }
+.bg-brand-card\/50 { background-color: rgba(12, 17, 32, 0.5); }
+.bg-brand-card\/80 { background-color: rgba(12, 17, 32, 0.8); }
+
+.radar-circle {
+    border: 1px solid rgba(0, 212, 255, 0.1);
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
