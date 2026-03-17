@@ -1,5 +1,5 @@
 # PhishRadar🛡️  
-### A Cybersecurity Web Application
+### A Cybersecurity Web Application focusing on real-world phishing detection.
 
 PhishRadar is a web-based phishing detection tool designed to help users identify potentially malicious URLs and phone numbers. It provides real-time analysis and securely stores scan results for future reference.
 
@@ -52,4 +52,6 @@ http://localhost:3000
   - API Design & Scanning Logic  
 
 - Neel igner(Frontend Developer)  
-  - Frontend Development (UI/UX Design & Implementation)  
+  - Frontend Development
+  - UI/UX Implementation
+  - User Interaction Handling
