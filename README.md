@@ -2,7 +2,8 @@
 ### A Cybersecurity Web Application focusing on real-world phishing detection.
 
 PhishRadar is a web-based phishing detection tool designed to help users identify potentially malicious URLs and phone numbers. It provides real-time analysis and securely stores scan results for future reference.
-<img width="1348" height="627" alt="home png" src="https://github.com/user-attachments/assets/6867e6b0-059b-46ea-a023-fbeee9284925" />
+<img width="1536" height="1024" alt="Phishradar-logo" src="https://github.com/user-attachments/assets/db29ca82-73eb-41bb-bed5-b505d82e4968" />
+
 
 ---
 
