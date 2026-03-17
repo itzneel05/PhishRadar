@@ -301,5 +301,19 @@
             btnText.innerText = 'NUMBER';
         }
     }
+    fetch("/scan",{
+    method:"POST",
+    headers:{
+        "Content-Type":"application/json"
+    },
+    body: JSON.stringify({
+        url: document.getElementById("urlInput").value,
+        phone: document.getElementById("phoneInput").value
+    })
+})
+.then(res=>res.json())
+.then(data=>{
+    document.getElementById("result").innerText = data.result
+})
 </script>
 </body></html>
